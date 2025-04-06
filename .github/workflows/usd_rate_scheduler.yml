@@ -1,0 +1,22 @@
+name: USD Rate Scheduler
+
+on:
+  schedule:
+    - cron: '10 * * *'  # This runs the script every day at 10 AM
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+      - name: Run the script
+        run: |
+          python hnb_usd_rate.py
